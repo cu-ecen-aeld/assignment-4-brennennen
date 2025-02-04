@@ -9,8 +9,20 @@ git submodule init
 git submodule sync
 git submodule update
 
-set -e 
+set -x
+set -e
 cd `dirname $0`
+
+# wsl notes:
+# windows uses case insensitive names (foo.txt == Foo.txt) by default, need to set this with powershell
+# admin to fix this. need to temporarily move all folders out of this directory, set it, then move
+# them back.
+# fsutil.exe file queryCaseSensitiveInfo <path>
+# fsutil.exe file setCaseSensitiveInfo <path> enable
+#
+# wsl adds some windows specific paths to PATH that have spaces in the name and buildroot fails to handle this.
+export PATH=/bin:/usr/local/bin:/usr/bin
+#
 
 if [ ! -e buildroot/.config ]
 then
