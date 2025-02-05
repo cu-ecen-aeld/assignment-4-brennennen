@@ -18,6 +18,12 @@ exec > >(tee -i -a "$logfile") 2> >(tee -i -a "$logfile" >&2)
 
 echo "Running test with user $(whoami)"
 
+# patch the auto-tester to support ubuntu24.04 with an additional `-O` flag for scp.
+set +e
+cd ./assignment-autotest
+git apply ./../patches/autotest_assignment4_scp_legacy_flag.patch 2>/dev/null
+cd ..
+
 set +e
 
 # If there's a configuration for the assignment number, use this to look for

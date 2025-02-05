@@ -1,0 +1,15 @@
+diff --git a/test/shared/script-helpers b/test/shared/script-helpers
+index ecf7341..eacfb8b 100755
+--- a/test/shared/script-helpers
++++ b/test/shared/script-helpers
+@@ -82,8 +82,8 @@ validate_assignment2_checks() {
+ 	executable_path=${2}
+
+ 	# scp the scripts required to validate the assignment 1 checks.
+-	sshpass -p 'root' scp -o StrictHostKeyChecking=no -P 10022 ${script_dir}/assignment-1-test.sh root@localhost:${executable_path}
+-	sshpass -p 'root' scp -o StrictHostKeyChecking=no -P 10022 ${script_dir}/script-helpers root@localhost:${executable_path}
++	sshpass -p 'root' scp -O -o StrictHostKeyChecking=no -P 10022 ${script_dir}/assignment-1-test.sh root@localhost:${executable_path}
++	sshpass -p 'root' scp -O -o StrictHostKeyChecking=no -P 10022 ${script_dir}/script-helpers root@localhost:${executable_path}
+
+ 	ssh_cmd "${executable_path}/assignment-1-test.sh"
+ 	rc=$?

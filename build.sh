@@ -13,12 +13,11 @@ set -x
 set -e
 cd `dirname $0`
 
-# wsl notes:
-# windows uses case insensitive names (foo.txt == Foo.txt) by default, need to set this with powershell
-# admin to fix this. need to temporarily move all folders out of this directory, set it, then move
-# them back.
-# fsutil.exe file queryCaseSensitiveInfo <path>
-# fsutil.exe file setCaseSensitiveInfo <path> enable
+# wsl:
+# windows uses case insensitive names (foo.txt == Foo.txt) by default. They support case
+# sensitive names on wsl mounted drives though. The OUT_DIR needs to be pointing at a
+# folder that supports case sensitive naming. The WSL root filesystem does by default, so
+# /tmp works fine.
 #
 # wsl adds some windows specific paths to PATH that have spaces in the name and buildroot fails to handle this.
 export PATH=/bin:/usr/local/bin:/usr/bin
